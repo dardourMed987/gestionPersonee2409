@@ -2,14 +2,14 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>fr.intiFormation</groupId>
   <artifactId>gestionPersonne</artifactId>
-  <version>0.0.2-SNAPSHOT</version>
+  <version>0.0.2</version>
   <packaging>pom</packaging>
   
    <scm>
         <connection>scm:git:https://github.com/dardourMed987/gestionPersonee2409.git</connection>
         <developerConnection>scm:git:https://github.com/dardourMed987/gestionPersonee2409.git</developerConnection>
         <url>https://github.com/dardourMed987/gestionPersonee2409</url>
-      <tag>HEAD</tag>
+      <tag>v0.0.2</tag>
   </scm>
   
   <properties>
