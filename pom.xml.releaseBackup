@@ -2,14 +2,15 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>fr.intiFormation</groupId>
   <artifactId>gestionPersonne</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.0.2-SNAPSHOT</version>
   <packaging>pom</packaging>
   
    <scm>
         <connection>scm:git:https://github.com/dardourMed987/gestionPersonee2409.git</connection>
         <developerConnection>scm:git:https://github.com/dardourMed987/gestionPersonee2409.git</developerConnection>
         <url>https://github.com/dardourMed987/gestionPersonee2409</url>
-    </scm>
+      <tag>HEAD</tag>
+  </scm>
   
   <properties>
         <java.version>1.8</java.version>
@@ -27,6 +28,17 @@
         </dependency>
     </dependencies>
 </dependencyManagement>
+
+<distributionManagement>
+		<repository>
+			<id>nexus-releases</id>
+			<url>http://localhost:8081/repository/maven-releases-gestion-personne/</url>
+		</repository>
+		<snapshotRepository>
+			<id>nexus-snapshots</id>
+			<url>http://localhost:8081/repository/maven-releases-gestion-personne/</url>
+		</snapshotRepository>
+	</distributionManagement>
 
 <build>
 		<plugins>

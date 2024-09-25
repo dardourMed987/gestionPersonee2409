@@ -1,72 +1,113 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  
   <modelVersion>4.0.0</modelVersion>
   <groupId>fr.intiFormation</groupId>
   <artifactId>gestionPersonne</artifactId>
   <version>0.0.3-SNAPSHOT</version>
   <packaging>pom</packaging>
-  
-   <scm>
-        <connection>scm:git:https://github.com/dardourMed987/gestionPersonee2409.git</connection>
-        <developerConnection>scm:git:https://github.com/dardourMed987/gestionPersonee2409.git</developerConnection>
-        <url>https://github.com/dardourMed987/gestionPersonee2409</url>
+
+  <!-- SCM Configuration -->
+  <scm>
+      <connection>scm:git:https://github.com/dardourMed987/gestionPersonee2409.git</connection>
+      <developerConnection>scm:git:https://github.com/dardourMed987/gestionPersonee2409.git</developerConnection>
+      <url>https://github.com/dardourMed987/gestionPersonee2409</url>
       <tag>HEAD</tag>
   </scm>
-  
+
+  <!-- Project properties -->
   <properties>
-        <java.version>1.8</java.version>
-        <spring-boot.version>2.7.5</spring-boot.version>
-    </properties>
-    
-    <dependencyManagement>
+      <java.version>1.8</java.version>
+      <spring-boot.version>2.7.5</spring-boot.version>
+  </properties>
+
+  <!-- Dependency Management -->
+  <dependencyManagement>
     <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-dependencies</artifactId>
-            <version>${spring-boot.version}</version>
-            <scope>import</scope>
-            <type>pom</type>
-        </dependency>
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-dependencies</artifactId>
+        <version>${spring-boot.version}</version>
+        <scope>import</scope>
+        <type>pom</type>
+      </dependency>
     </dependencies>
-</dependencyManagement>
+  </dependencyManagement>
 
-<distributionManagement>
-		<repository>
-			<id>nexus-releases</id>
-			<url>http://localhost:8081/repository/maven-releases-gestion-personne/</url>
-		</repository>
-		<snapshotRepository>
-			<id>nexus-snapshots</id>
-			<url>http://localhost:8081/repository/maven-releases-gestion-personne/</url>
-		</snapshotRepository>
-	</distributionManagement>
+  <!-- Distribution Management for GitHub Packages -->
+  <distributionManagement>
+    <repository>
+      <id>nexus-releases</id>
+      <url>http://localhost:8081/repository/maven-releases-gestion-personne/</url>
+    </repository>
+  </distributionManagement>
 
-<build>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.0</version>
-				<configuration>
-					<source>1.8</source>
-					<target>1.8</target>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-release-plugin</artifactId>
-				<version>2.5.2</version>
-				<configuration>
-					<tagNameFormat>v@{project.version}</tagNameFormat>
-					<autoVersionSubmodules>true</autoVersionSubmodules>
-					<releaseProfiles>releases</releaseProfiles>
-				</configuration>
-			</plugin>
-		</plugins>
-</build>	
-    
+  <!-- Build and plugins configuration -->
+  <build>
+    <plugins>
+      <!-- Compiler plugin configuration -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.0</version>
+        <configuration>
+          <source>1.8</source>
+          <target>1.8</target>
+        </configuration>
+      </plugin>
+
+      <!-- Maven release plugin configuration -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-release-plugin</artifactId>
+        <version>2.5.2</version>
+        <configuration>
+          <tagNameFormat>v@{project.version}</tagNameFormat>
+          <autoVersionSubmodules>true</autoVersionSubmodules>
+          <releaseProfiles>releases</releaseProfiles>
+        </configuration>
+      </plugin>
+
+    </plugins>
+  </build>
+  
+  <profiles>
+    <profile>
+        <id>releases</id>
+        <build>
+            <plugins>
+                <plugin>
+                    <groupId>org.sonatype.plugins</groupId>
+                    <artifactId>nexus-staging-maven-plugin</artifactId>
+                    <version>1.5.1</version>
+                    <executions>
+                        <execution>
+                            <id>default-deploy</id>
+                            <phase>deploy</phase>
+                            <goals>
+                                <goal>deploy</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                    <configuration>
+                        <serverId>nexus-releases</serverId> <!-- Le même serverId que dans ton settings.xml -->
+                        <nexusUrl>http://localhost:8081</nexusUrl>
+                        <skipStaging>true</skipStaging>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </build>
+    </profile>
+</profiles>
+  
+  
+
+  <!-- Modules configuration -->
   <modules>
-  	<module>gestionPersonne-repository</module>
-  	<module>gestionPersonne-service</module>
-  	<module>gestionPersonne-web</module>
+    <module>gestionPersonne-repository</module>
+    <module>gestionPersonne-service</module>
+    <module>gestionPersonne-web</module>
   </modules>
+
 </project>
