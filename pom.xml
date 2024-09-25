@@ -36,7 +36,7 @@
   <!-- Distribution Management for GitHub Packages -->
   <distributionManagement>
     <repository>
-      <id>nexus-releases</id>
+      <id>maven-releases-gestion-personne</id>
       <url>http://localhost:8081/repository/maven-releases-gestion-personne/</url>
     </repository>
   </distributionManagement>
@@ -89,7 +89,7 @@
                         </execution>
                     </executions>
                     <configuration>
-                        <serverId>nexus-releases</serverId> <!-- Le même serverId que dans ton settings.xml -->
+                        <serverId>maven-releases-gestion-personne</serverId> <!-- Le même serverId que dans ton settings.xml -->
                         <nexusUrl>http://localhost:8081</nexusUrl>
                         <skipStaging>true</skipStaging>
                     </configuration>
